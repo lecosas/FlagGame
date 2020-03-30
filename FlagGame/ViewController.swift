@@ -46,6 +46,8 @@ class ViewController: UIViewController {
         button3.layer.borderWidth = 1
         
         askQuestion()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .organize, target: self, action: #selector(showScore))
     }
 
     //MARK: - Methods
@@ -57,6 +59,12 @@ class ViewController: UIViewController {
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         correctAnswer = Int.random(in: 0...2)
         title = countries[correctAnswer].uppercased() + " - Score: \(score)"
+    }
+    
+    @objc func showScore() {
+        let ac = UIAlertController(title: "Score", message: "Your score is \(score)", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Back", style: .default, handler: nil))
+        present(ac, animated: true)
     }
     
     //MARK: - Actions
